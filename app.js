@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -30,10 +29,6 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
-eventEmitter.on('commit', function() {
-  console.log('listener added');
-});
-
 // Routes
 
 app.get('/', function(req, res){
@@ -45,6 +40,7 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
   eventEmitter.emit('commit', req.body);
+  buffer.unshift(req.body);
   res.send(req.body);
 });
 
@@ -53,11 +49,7 @@ app.listen(3000);
 io.sockets.on('connection', function (socket) {
   console.log('connected');
   eventEmitter.on('commit', function(data) {
-    console.log('here');
     socket.emit('newCommit', data);
-    
-    buffer.unshift({author: data.author, comment: data.comment, diff: data.diff});
-  
   });
 });
 console.log("Express server listening on port %d", app.address().port);
