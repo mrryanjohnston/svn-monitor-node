@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#wrapper {
+  width: 700px;
+}
+
+#header {
+  width: 700px;
+}
+
+#leftside {
+  width: 200px;
+  float: left;
+}
+
+#rightside {
+  width: 500px;
+  float: right;
+}
+
+#footer {
+  width: 700px;
+  clear: both;
+}
